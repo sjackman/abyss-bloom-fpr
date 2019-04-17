@@ -33,7 +33,7 @@ plot_n <- ggplot(fpr_fac) +
 		breaks = seq(0, 0.200, by = 0.01)) +
 	scale_y_continuous(name = "Number of contigs") +
 	expand_limits(y = 0) +
-	theme_cowplot()
+	theme_cowplot(font_size = 12)
 ```
 
 ```{r fpr-and-ng50}
@@ -43,7 +43,7 @@ plot_ng50 <- ggplot(fpr_fac) +
 	geom_hline(yintercept = max(fpr_fac$NG50), linetype = "dashed") +
 	scale_x_continuous(labels = percent_format(accuracy = 0.1),
 		breaks = seq(0, 0.200, by = 0.01)) +
-	theme_cowplot()
+	theme_cowplot(font_size = 12)
 ```
 
 ```{r combine-plots, fig.width = 6, fig.height = 6}
