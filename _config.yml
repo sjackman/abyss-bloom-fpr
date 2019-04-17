@@ -1,3 +1,4 @@
 title: "Effect of Bloom filter false positive rate on assembly with ABySS"
+description: "https://github.com/sjackman/abyss-bloom-fpr"
 theme: "jekyll-theme-slate"
-google_analytics: UA-2437900-4
+google_analytics: "UA-2437900-4"

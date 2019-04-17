@@ -1,5 +1,3 @@
-# Effect of Bloom filter false positive rate on assembly with ABySS
-
 # Results
 
 Assembly performance is unaffected so long as the FPR is below 11%. We see degraded assembly performance with FPR between 11% and 17%, and severely degraded assembly performance above 17% (Fig. 1). This result is consistent with [Pell *et al.* (2012)](https://doi.org/10.1073/pnas.1121464109), who predict that the graph structure will degrade quickly with a FPR above 18.3%.
