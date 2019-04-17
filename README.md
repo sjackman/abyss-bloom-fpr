@@ -2,7 +2,7 @@
 
 # Results
 
-Assembly performance is unaffected so long as the FPR is below 11%. We see degraded assembly performance with FPR between 11% and 17%, and severely degraded assembly performance above 17% (Fig. 1). This result is consistent with Pell *et al.* (2012), who predict that the graph structure will degrade quickly with a FPR above 18.3%.
+Assembly performance is unaffected so long as the FPR is below 11%. We see degraded assembly performance with FPR between 11% and 17%, and severely degraded assembly performance above 17% (Fig. 1). This result is consistent with [Pell *et al.* (2012)](https://doi.org/10.1073/pnas.1121464109), who predict that the graph structure will degrade quickly with a FPR above 18.3%.
 
 [![Assembly performance is degraded when the FPR is above 11%, and severely degraded above 17%.](fpr.png)](fpr.pdf)
 
@@ -38,3 +38,7 @@ Fig. 1: Assembly performance is degraded when the FPR is above 11%, and severely
 - ABySS 2.1.4
 - [Makefile](Makefile)
 - [Sequencing data](https://github.com/rrwick/Unicycler/tree/master/sample_data#shigella-sonnei-plasmids-synthetic-reads)
+
+# References
+
+Pell, J., Hintze, A., Canino-Koning, R., Howe, A., Tiedje, J. M., & Brown, C. T. (2012). Scaling metagenome sequence assembly with probabilistic de Bruijn graphs. Proceedings of the National Academy of Sciences, 109(33), 13272–13277. https://doi.org/10.1073/pnas.1121464109
