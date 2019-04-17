@@ -1,1 +1,3 @@
-theme: jekyll-theme-slate
+title: "Effect of Bloom filter false positive rate on assembly with ABySS"
+theme: "jekyll-theme-slate"
+google_analytics: UA-2437900-4
