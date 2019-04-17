@@ -1,0 +1,66 @@
+---
+title: Plot NG50 vs FPR
+author: Shaun Jackman
+---
+
+```{r setup}
+library(cowplot)
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(scales)
+library(stringr)
+```
+
+```{r read-data}
+G <- 229880
+
+fpr <- read_tsv("abyss-fpr.tsv") %>%
+	mutate(FPR = FPR / 100)
+fac <- read_tsv("abyss-fac.tsv") %>%
+	mutate(
+		B = as.integer(str_extract(name, "[0-9]+")),
+		NG50 = ifelse(sum < G / 2, 0, NG50))
+fpr_fac <- left_join(fpr, fac, by = "B")
+```
+
+```{r fpr-and-n}
+plot_n <- ggplot(fpr_fac) +
+	aes(x = FPR, y = n) +
+	geom_point() +
+	geom_hline(yintercept = min(fpr_fac$n), linetype = "dashed") +
+	scale_x_continuous(labels = percent_format(accuracy = 0.1),
+		breaks = seq(0, 0.200, by = 0.01)) +
+	scale_y_continuous(name = "Number of contigs") +
+	expand_limits(y = 0) +
+	theme_bw()
+```
+
+```{r fpr-and-ng50}
+plot_ng50 <- ggplot(fpr_fac) +
+	aes(x = FPR, y = NG50) +
+	geom_point() +
+	geom_hline(yintercept = max(fpr_fac$NG50), linetype = "dashed") +
+	scale_x_continuous(labels = percent_format(accuracy = 0.1),
+		breaks = seq(0, 0.200, by = 0.01)) +
+	theme_bw()
+```
+
+```{r combine-plots, fig.width = 6, fig.height = 6}
+plot_grid(plot_n, plot_ng50, ncol = 1)
+ggsave("fpr.pdf", width = 6, height = 6, units = "in")
+ggsave("fpr.png")
+```
+
+# Table of metrics.
+```{r fpr-table}
+fpr_table <- fpr_fac %>%
+	arrange(FPR) %>%
+	transmute(
+		FPR = percent(FPR),
+		Contigs = comma(n),
+		`NG50 (bp)` = comma(NG50))
+
+fpr_table
+write_tsv(fpr_table, "fpr.tsv")
+```
